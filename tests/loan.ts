@@ -50,7 +50,7 @@ import { v4 as uuidv4 } from 'uuid'
 
   // TO TEST:
   // console.log('creating Loan for Borrower Id...')
-  // const fouId = uuidv4()
+  const _fouId = uuidv4()
   // const fouA = await client.loan.create('BO-9BR3-GW8J', {
   //   type: 'lineOfCredit',
   //   externalId: fouId,

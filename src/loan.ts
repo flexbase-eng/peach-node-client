@@ -485,7 +485,7 @@ export class LoanApi {
     // ...drop it all if it's empty
     query = isEmpty(query) ? undefined : query
     // make the body from everything *but* 'force'
-    const { force, ...data } = options || {}
+    const { _force, ...data } = options || {}
 
     // ...now we can make the call
     const resp = await this.client.fire(

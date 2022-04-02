@@ -111,7 +111,7 @@ import { v4 as uuidv4 } from 'uuid'
   const sixBId = uuidv4()
   console.log(`cloning new Contact ${sixBId} for Borrower Id...`)
   const sixB = await client.contact.clone('BO-9BR3-GW8J', sixA.contact!.id, {
-      externalId: sixBId,
+    externalId: sixBId,
   }, { readAfterWrite: true })
   if (sixB.success && sixB.contact?.value === '+16305551212') {
     console.log(`Success! Created Contact id: ${sixB.contact!.id} as externalId: ${sixB.contact?.externalId}`)
