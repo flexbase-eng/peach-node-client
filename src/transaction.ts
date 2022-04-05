@@ -344,14 +344,14 @@ export class TransactionApi {
     // ...drop it all if it's empty
     query = isEmpty(query) ? undefined : query
     // make the body from everything *but* 'sync'
-    const { _sync, ...data } = options || {}
+    delete options.sync
 
     // ...now we can make the call
     const resp = await this.client.fire(
       'POST',
       `people/${borrowerId}/loans/${loanId}/transactions/${transactionId}/reverse`,
       query,
-      data,
+      options,
     )
     if (resp?.response?.status >= 400) {
       return {
@@ -391,14 +391,14 @@ export class TransactionApi {
     // ...drop it all if it's empty
     query = isEmpty(query) ? undefined : query
     // make the body from everything *but* 'sync'
-    const { _sync, ...data } = options || {}
+    delete options.sync
 
     // ...now we can make the call
     const resp = await this.client.fire(
       'POST',
       `people/${borrowerId}/loans/${loanId}/transactions/${transactionId}/backdate`,
       query,
-      data,
+      options,
     )
     if (resp?.response?.status >= 400) {
       return {

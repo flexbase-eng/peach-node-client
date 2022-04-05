@@ -69,8 +69,8 @@ import { v4 as uuidv4 } from 'uuid'
       console.log(fouB)
     }
 
-    console.log('archiving parent home phone Contact for Borrower Id now...')
-    const fivA = await client.contact.archive('BO-9BR3-GW8J', fouA.contact!.id)
+    console.log('deleting parent home phone Contact for Borrower Id now...')
+    const fivA = await client.contact.delete('BO-9BR3-GW8J', fouA.contact!.id)
     if (fivA.success) {
       console.log('Success!')
     } else {
