@@ -103,7 +103,20 @@ export interface LoanOrigination {
   specificDays?: (string | number)[];
   creditLimitAmount?: number;
   fees?: LoanFees;
-  personAddress?: ContactAddress;
+  minPaymentCalculation?: {
+    percentageOfPrincipal: number;
+    minAmount: number;
+  };
+  autoAmortization?: {
+    amortizationLogic: string;
+    duration?: number;
+    periodicPaymentAmount?: number;
+  };
+  gracePeriod?: {
+    isGracePeriodApplicable?: boolean;
+    numPeriodsToRestoreGrace?: number;
+  };
+  personAddress?: Partial<ContactAddress>;
   personAddressId?: string;
   downPaymentAmount?: number;
   totalInterestAmount?: number;
@@ -123,7 +136,7 @@ export interface LoanOrigination {
 }
 
 export interface PromoRate {
-  days?: number;
+  days?: number | null;
   rate?: number;
 }
 
@@ -246,6 +259,22 @@ export interface PromoProgram {
   promoGracePeriodDays?: number;
   sacDisqualifyOverdueDays?: number;
   metaData?: any;
+}
+
+export interface LoanPeriod {
+  object?: string;
+  periodId?: string;
+  startDate?: string;
+  endDate?: string;
+  statementDate?: string;
+  dueDate?: string;
+}
+
+export interface LoanPeriodList {
+  count?: bigint;
+  nextUrl?: string;
+  previousUrl?: string;
+  data: LoanPeriod[];
 }
 
 export interface LoanList {
@@ -485,14 +514,14 @@ export class LoanApi {
     // ...drop it all if it's empty
     query = isEmpty(query) ? undefined : query
     // make the body from everything *but* 'force'
-    const { _force, ...data } = options || {}
+    delete options.force
 
     // ...now we can make the call
     const resp = await this.client.fire(
       'POST',
       `people/${borrowerId}/loans/${loanId}/cancel`,
       query,
-      data,
+      options,
     )
     if (resp?.response?.status >= 400) {
       return {
@@ -552,14 +581,7 @@ export class LoanApi {
    */
   async periods(borrowerId: string, loanId: string): Promise<{
     success: boolean,
-    periods?: {
-      object: string,
-      periodId: string,
-      startDate?: string,
-      endDate?: string,
-      statementDate?: string,
-      dueDate?: string,
-    }[],
+    periods?: LoanPeriodList,
     error?: PeachError,
   }> {
     const resp = await this.client.fire(

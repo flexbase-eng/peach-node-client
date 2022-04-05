@@ -208,10 +208,10 @@ export class ContactApi {
 
   /*
    * Function to take a Borrower Id, be that the Peach id (BO-XXXX-XXXX),
-   * or an external id (ext-XXXX), the Peach Contact Id, and archive the
-   * Identity for this Borrower.
+   * or an external id (ext-XXXX), the Peach Contact Id, and remove the
+   * Contact for this Borrower.
    */
-  async archive(borrowerId: string, contactId: string): Promise<{
+  async delete(borrowerId: string, contactId: string): Promise<{
     success: boolean,
     error?: PeachError,
   }> {
@@ -371,7 +371,7 @@ export class ContactApi {
     // see if the user wants a read-after-write check
     if (options.readAfterWrite) {
       // we have to refetch it to see any PII data... odd but true.
-      return (await this.byId(borrowerId, contactId))
+      return (await this.byId(borrowerId, resp?.payload?.data?.id))
     }
     // ...no need, we return exactly what we have.
     const success = (resp?.payload?.status || resp?.response?.status) < 400
