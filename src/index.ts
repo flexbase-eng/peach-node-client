@@ -159,8 +159,6 @@ export class Peach {
           headers,
         })
         const payload = declutter(camelCaseKeys((await response?.json()), { deep: true }))
-        // const payload = camelCaseKeys((await response?.json()), { deep: true })
-        // console.log('PAYLOAD',payload)
         return { response, payload }
       } catch (err) {
         return { response }

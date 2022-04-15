@@ -244,7 +244,6 @@ export class DrawApi {
     amountsValidation?: AmountsValidation,
     error?: PeachError,
   }> {
-    console.log(`people/${borrowerId}/loans/${loanId}/draws/${drawId}/activate`)
     const resp = await this.client.fire(
       'POST',
       `people/${borrowerId}/loans/${loanId}/draws/${drawId}/activate`,
