@@ -134,6 +134,11 @@ export class TransactionApi {
       `people/${borrowerId}/loans/${loanId}/transactions`,
       { ...search }
     )
+    // see if there are none to show - that's a 404, but not an error
+    if (resp?.response?.status == 404) {
+      return { success: true, transactions: { count: BigInt(0), data: [] } }
+    }
+    // ...now catch the other errors...
     if (resp?.response?.status >= 400) {
       return {
         success: false,
@@ -256,7 +261,7 @@ export class TransactionApi {
       externalId?: string | null;
       status?: string;
       failureReason?: string;
-      paymentInstrumentId: string;
+      paymentInstrumentId?: string;
       amount: number;
       scheduledDate?: string;
       enablePrepayments?: boolean;

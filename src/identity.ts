@@ -74,6 +74,11 @@ export class IdentityApi {
       `people/${borrowerId}/identities`,
       options,
     )
+    // see if there are none to show - that's a 404, but not an error
+    if (resp?.response?.status == 404) {
+      return { success: true, identities: { count: BigInt(0), data: [] } }
+    }
+    // ...now catch the other errors...
     if (resp?.response?.status >= 400) {
       return {
         success: false,

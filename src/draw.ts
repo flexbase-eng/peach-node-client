@@ -67,6 +67,11 @@ export class DrawApi {
       `people/${borrowerId}/loans/${loanId}/draws`,
       { ...search }
     )
+    // see if there are none to show - that's a 404, but not an error
+    if (resp?.response?.status == 404) {
+      return { success: true, draws: { count: BigInt(0), data: [] } }
+    }
+    // ...now catch the other errors...
     if (resp?.response?.status >= 400) {
       return {
         success: false,
@@ -232,16 +237,19 @@ export class DrawApi {
    * and activates the Draw. This will trigger any activation-related
    * logic at Peach.
    */
-  async activate(borrowerId: string, loanId: string, drawId: string, ): Promise<{
+  async activate(borrowerId: string, loanId: string, drawId: string): Promise<{
     success: boolean,
     schedule?: LoanSchedule,
     ratesValidation?: RatesValidation,
     amountsValidation?: AmountsValidation,
     error?: PeachError,
   }> {
+    console.log(`people/${borrowerId}/loans/${loanId}/draws/${drawId}/activate`)
     const resp = await this.client.fire(
       'POST',
       `people/${borrowerId}/loans/${loanId}/draws/${drawId}/activate`,
+      undefined,
+      {},
     )
     if (resp?.response?.status >= 400) {
       return {

@@ -10,6 +10,7 @@ import { LoanApi } from './loan'
 import { DrawApi } from './draw'
 import { PurchaseApi } from './purchase'
 import { PurchaseDisputeApi } from './purchase-dispute'
+import { PaymentInstrumentApi } from './payment-instrument'
 import { TransactionApi } from './transaction'
 
 const ClientVersion = require('../package.json').version
@@ -98,6 +99,7 @@ export class Peach {
   draw: DrawApi
   purchase: PurchaseApi
   purchaseDispute: PurchaseDisputeApi
+  paymentInstrument: PaymentInstrumentApi
   transaction: TransactionApi
 
   constructor (options?: PeachOptions) {
@@ -111,6 +113,7 @@ export class Peach {
     this.draw = new DrawApi(this, options)
     this.purchase = new PurchaseApi(this, options)
     this.purchaseDispute = new PurchaseDisputeApi(this, options)
+    this.paymentInstrument = new PaymentInstrumentApi(this, options)
     this.transaction = new TransactionApi(this, options)
   }
 

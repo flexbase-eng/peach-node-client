@@ -206,6 +206,11 @@ export interface AdvanceDetails {
 
 export interface LoanFees {
   originationFeeAmount?: number;
+  dynamicFees?: {
+    apiName?: string;
+    feeAmount?: number;
+    feeCapAmount?: number;
+  }[];
   serviceFeeAmount?: number;
   serviceFeeCapAmount?: number;
   totalOtherFeesAmount?: number;
@@ -314,6 +319,11 @@ export class LoanApi {
       `people/${borrowerId}/loans`,
       options,
     )
+    // see if there are none to show - that's a 404, but not an error
+    if (resp?.response?.status == 404) {
+      return { success: true, loans: { count: BigInt(0), data: [] } }
+    }
+    // ...now catch the other errors...
     if (resp?.response?.status >= 400) {
       return {
         success: false,
