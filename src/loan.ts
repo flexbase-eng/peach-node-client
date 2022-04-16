@@ -325,11 +325,16 @@ export class LoanApi {
     }
     // ...now catch the other errors...
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -354,11 +359,16 @@ export class LoanApi {
       `people/${borrowerId}/loans/${loanId}`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -411,11 +421,16 @@ export class LoanApi {
       data,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -481,11 +496,16 @@ export class LoanApi {
       data,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -534,11 +554,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -570,11 +595,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -599,11 +629,16 @@ export class LoanApi {
       `people/${borrowerId}/loans/${loanId}/periods`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -636,11 +671,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -677,11 +717,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -712,11 +757,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -749,11 +799,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -784,11 +839,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -823,11 +883,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -859,11 +924,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -893,11 +963,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -930,11 +1005,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -964,11 +1044,16 @@ export class LoanApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -994,11 +1079,16 @@ export class LoanApi {
       `people/${borrowerId}/loans/${loanId}/refresh`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },

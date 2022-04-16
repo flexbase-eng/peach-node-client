@@ -106,11 +106,16 @@ export class PaymentInstrumentApi {
     }
     // ...now catch the other errors...
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -138,11 +143,16 @@ export class PaymentInstrumentApi {
       `people/${borrowerId}/payment-instruments/${paymentInstrumentId}`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -196,11 +206,16 @@ export class PaymentInstrumentApi {
       { ...data },
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -275,11 +290,16 @@ export class PaymentInstrumentApi {
       { ...data },
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.error || resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -311,11 +331,16 @@ export class PaymentInstrumentApi {
       `people/${borrowerId}/payment-instruments/${paymentInstrumentId}`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -349,11 +374,16 @@ export class PaymentInstrumentApi {
       { deposit1, deposit2 },
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -403,11 +433,16 @@ export class PaymentInstrumentApi {
       { ...data },
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -452,11 +487,16 @@ export class PaymentInstrumentApi {
       { ...data },
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -483,11 +523,16 @@ export class PaymentInstrumentApi {
       `people/${borrowerId}/payment-instruments/${paymentInstrumentId}/account-link`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -516,11 +561,16 @@ export class PaymentInstrumentApi {
       `people/${borrowerId}/payment-instruments/${paymentInstrumentId}/balance`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -550,11 +600,16 @@ export class PaymentInstrumentApi {
       `people/${borrowerId}/payment-instruments/${paymentInstrumentId}/balance`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },

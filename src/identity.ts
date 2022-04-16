@@ -43,11 +43,16 @@ export class IdentityApi {
       `people/${borrowerId}/identity`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -80,11 +85,16 @@ export class IdentityApi {
     }
     // ...now catch the other errors...
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -109,11 +119,16 @@ export class IdentityApi {
       `people/${borrowerId}/identities/${identityId}`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -156,11 +171,16 @@ export class IdentityApi {
       data,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -193,11 +213,16 @@ export class IdentityApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -240,11 +265,16 @@ export class IdentityApi {
       data,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },

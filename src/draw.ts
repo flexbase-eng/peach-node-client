@@ -73,11 +73,16 @@ export class DrawApi {
     }
     // ...now catch the other errors...
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -102,11 +107,16 @@ export class DrawApi {
       `people/${borrowerId}/loans/${loanId}/draws/${drawId}`,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -158,11 +168,16 @@ export class DrawApi {
       { ...data },
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -211,11 +226,16 @@ export class DrawApi {
       { ...data },
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.error || resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -251,11 +271,16 @@ export class DrawApi {
       {},
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -285,11 +310,16 @@ export class DrawApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -320,11 +350,16 @@ export class DrawApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -360,11 +395,16 @@ export class DrawApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -396,11 +436,16 @@ export class DrawApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -441,11 +486,16 @@ export class DrawApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
@@ -475,11 +525,16 @@ export class DrawApi {
       options,
     )
     if (resp?.response?.status >= 400) {
+      // build error message from all possible sources...
+      let error = resp?.payload?.error || resp?.payload?.message
+      if (resp.payload?.detail) {
+        error = `${resp.payload.title}: ${resp.payload.detail}`
+      }
       return {
         success: false,
         error: {
           type: 'peach',
-          error: resp?.payload?.message,
+          error,
           status: resp?.response?.status,
           peachStatus: resp?.payload?.status,
         },
