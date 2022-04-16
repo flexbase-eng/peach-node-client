@@ -1633,7 +1633,7 @@ Creating a Draw looks something like this:
 const resp = await client.draw.create('BO-9BR3-GW8J', 'LN-5K97-XPVJ', {
   externalId: 'b83309f4-3338-4e33-bab8-b3050d6a4102',
   nickname: 'My Draw',
-  status: 'pending',
+  status: 'originated',
   atOrigination: {
     interestRates: [ { days: null, rate: 0 } ],
     fees: {
@@ -1719,7 +1719,7 @@ The call to get Draws for a Borrower, and Loan, looks something like this:
 
 ```typescript
 const resp = await client.draw.get('BO-9BR3-GW8J', 'LN-5K97-XPVJ', {
-  status: 'pending'
+  status: 'originated'
 })
 ```
 
@@ -1958,9 +1958,32 @@ and can be the Peach Ids or external Ids, if they have been assigned. The respon
 ```javascript
 {
   success: true,
-  schedule: { ... },
+  schedule: [
+    {
+      amount: 0.0,
+      date: "2022-05-10",
+      dynamicFeeDetails: {
+        apiName: null,
+        displayName: null,
+        dynamicFeeTypeId: null,
+        loanFeeId: null,
+        transactionId: null
+      },
+      interestAmount: 0.0,
+      interestBeforeDiscountAmount: 0.0,
+      isDeferred: false,
+      originalAmount: 0.0,
+      paymentType: "periodicPayment",
+      periodId: "PE-K9P4-62OB",
+      principalAmount: 0.0,
+      status: "booked",
+      unroundedInterestAmount: "0",
+      unroundedInterestBeforeDiscountAmount: "0",
+      unroundedPrincipalAmount: "0"
+    }
+  ],
   ratesValidation: { ... },
-  amountsValidation: { ... }
+  amountsValidation: { ... },
 }
 ```
 
@@ -2170,7 +2193,37 @@ response will be something like:
 ```javascript
 {
   success: true,
-  purchase: { ... }
+  purchase: {
+    amount: 75.5,
+    declineReason: null,
+    displayId: 'f649d348-8a15-4359-9673-d1efbd75020e',
+    eligibleDisputeAmount: 75.5,
+    externalId: 'f649d348-8a15-4359-9673-d1efbd75020e',
+    id: 'DP-OB7O-L16B',
+    metadata: null,
+    originalAmount: 75.5,
+    originalPurchaseId: null,
+    purchaseDate: '2022-04-14',
+    purchaseDetails: {
+      categoryId: null,
+      conversionRate: 1,
+      description: 'Big Drill',
+      externalCardId: null,
+      isValidMerchantId: false,
+      merchantId: null,
+      merchantName: 'HomeDepot',
+      metadata: null,
+      originalCurrencyAmount: null,
+      originalCurrencyCode: 'USD',
+      pointOfSaleType: 'physical'
+    },
+    status: 'settled',
+    timestamps: {
+      createdAt: '2022-04-14T18:08:35.847211+00:00',
+      updatedAt: '2022-04-14T18:08:34.857352+00:00'
+    },
+    type: 'regular'
+  }
 }
 ```
 
@@ -2202,8 +2255,13 @@ like:
 ```javascript
 {
   success: true,
-  purchases: [
-    { ... }
+  purchases: {
+    count: 1,
+    total: 1,
+    data: [
+      { ... },
+    ],
+  }
   ]
 }
 ```
@@ -2263,7 +2321,37 @@ response will be something like:
 ```javascript
 {
   success: true,
-  purchase: { ... }
+  purchase: {
+    amount: 60,
+    declineReason: null,
+    displayId: '4facb63a-442c-467e-8677-a004d7cec60b',
+    eligibleDisputeAmount: 0,
+    externalId: '4facb63a-442c-467e-8677-a004d7cec60b',
+    id: 'DP-5K9P-M7YB',
+    metadata: null,
+    originalAmount: null,
+    originalPurchaseId: null,
+    purchaseDate: '2022-04-14',
+    purchaseDetails: {
+      categoryId: null,
+      conversionRate: 1,
+      description: 'Big Drill',
+      externalCardId: null,
+      isValidMerchantId: false,
+      merchantId: null,
+      merchantName: 'HomeDepot',
+      metadata: null,
+      originalCurrencyAmount: null,
+      originalCurrencyCode: 'USD',
+      pointOfSaleType: 'physical'
+    },
+    status: 'pending',
+    timestamps: {
+      createdAt: '2022-04-14T18:17:57.337643+00:00',
+      updatedAt: '2022-04-14T18:17:58.584053+00:00'
+    },
+    type: 'regular'
+  }
 }
 ```
 
@@ -2495,7 +2583,83 @@ data to create the Transaction. The response will be something like:
 ```javascript
 {
   success: true,
-  transaction: { ... }
+  transaction: {
+    achConfirmed: false,
+    achProcessedSameDay: false,
+    achReturnCode: null,
+    achSameDay: false,
+    actualAmount: 110,
+    autopayPaymentIds: null,
+    autopayPlanId: null,
+    avsResult: null,
+    cancelLongDescription: null,
+    cancelReason: null,
+    cancelShortDescription: null,
+    chargebackDetails: { amount: 0, chargebacks: [] },
+    companyId: 'CP-GDB3-G1JO',
+    createdBy: { id: 'UR-2KVR-1RDB', name: 'peachapi@lenderco.com' },
+    drawId: null,
+    enablePrepayments: false,
+    externalId: 'bf9d84bd-00fa-4e15-bfd5-6fef33cc1a9e',
+    failureDescriptionLong: null,
+    failureDescriptionShort: null,
+    failureReason: null,
+    id: 'TX-LBM8-X3VB',
+    isExternal: true,
+    isVirtual: false,
+    loanId: 'LN-MJ1E-PYPK',
+    mainBorrowerId: 'BO-9BR3-GW8J',
+    object: 'transaction',
+    paidFeesAmount: 0,
+    paidInterestAmount: 0,
+    paidOverAmount: 0,
+    paidPrincipalAmount: 0,
+    parentTransactionId: null,
+    paymentDetails: {
+      fromInstrument: [Object],
+      fromInstrumentId: 'PT-DB34-W9KO',
+      reason: 'oneTimePayment',
+      toInstrument: [Object],
+      toInstrumentId: 'PT-VPBO-QXJ2',
+      type: 'ach'
+    },
+    processingFeeAmount: null,
+    processingFeeType: null,
+    processorFailureDetails: null,
+    processorFailureReason: null,
+    processorMerchantId: null,
+    processorReconciliationId: null,
+    processorReversalId: null,
+    processorTransactionId: null,
+    retryAttempt: null,
+    retryOriginalTransactionId: null,
+    reversedByTransactionExternalId: null,
+    reversedByTransactionId: null,
+    reversedTransactionId: null,
+    reversedTransactionStatus: null,
+    reversingTransactionStatus: null,
+    scheduledAmount: 110,
+    serviceCreditDetails: { reason: 'oneTimePayment', sponsor: null, type: null },
+    status: 'pending',
+    timestamps: {
+      appliedAt: null,
+      canceledAt: null,
+      chargebackAt: null,
+      createdAt: '2022-04-15T21:18:45.140425+00:00',
+      deletedAt: null,
+      displayDate: '2022-04-15',
+      effectiveDate: '2022-04-15',
+      failedAt: null,
+      inDisputeAt: null,
+      initiatedAt: null,
+      originalEffectiveDate: '2022-04-15',
+      pendingAt: null,
+      scheduledDate: '2022-04-15',
+      succeededAt: null,
+      updatedAt: null
+    },
+    transactionType: 'payment'
+  }
 }
 ```
 
@@ -2555,7 +2719,83 @@ response will be something like:
 ```javascript
 {
   success: true,
-  transaction: { ... }
+  transaction: {
+    achConfirmed: false,
+    achProcessedSameDay: false,
+    achReturnCode: null,
+    achSameDay: false,
+    actualAmount: 110,
+    autopayPaymentIds: null,
+    autopayPlanId: null,
+    avsResult: null,
+    cancelLongDescription: null,
+    cancelReason: null,
+    cancelShortDescription: null,
+    chargebackDetails: { amount: 0, chargebacks: [] },
+    companyId: 'CP-GDB3-G1JO',
+    createdBy: { id: 'UR-2KVR-1RDB', name: 'peachapi@lenderco.com' },
+    drawId: null,
+    enablePrepayments: false,
+    externalId: 'bf9d84bd-00fa-4e15-bfd5-6fef33cc1a9e',
+    failureDescriptionLong: null,
+    failureDescriptionShort: null,
+    failureReason: null,
+    id: 'TX-LBM8-X3VB',
+    isExternal: true,
+    isVirtual: false,
+    loanId: 'LN-MJ1E-PYPK',
+    mainBorrowerId: 'BO-9BR3-GW8J',
+    object: 'transaction',
+    paidFeesAmount: 0.25,
+    paidInterestAmount: 0,
+    paidOverAmount: 0,
+    paidPrincipalAmount: 109.75,
+    parentTransactionId: null,
+    paymentDetails: {
+      fromInstrument: [Object],
+      fromInstrumentId: 'PT-DB34-W9KO',
+      reason: 'oneTimePayment',
+      toInstrument: [Object],
+      toInstrumentId: 'PT-VPBO-QXJ2',
+      type: 'ach'
+    },
+    processingFeeAmount: null,
+    processingFeeType: null,
+    processorFailureDetails: null,
+    processorFailureReason: null,
+    processorMerchantId: null,
+    processorReconciliationId: null,
+    processorReversalId: null,
+    processorTransactionId: null,
+    retryAttempt: null,
+    retryOriginalTransactionId: null,
+    reversedByTransactionExternalId: null,
+    reversedByTransactionId: null,
+    reversedTransactionId: null,
+    reversedTransactionStatus: null,
+    reversingTransactionStatus: null,
+    scheduledAmount: 110,
+    serviceCreditDetails: { reason: 'oneTimePayment', sponsor: null, type: null },
+    status: 'pending',
+    timestamps: {
+      appliedAt: '2022-04-15T21:18:45.176183+00:00',
+      canceledAt: null,
+      chargebackAt: null,
+      createdAt: '2022-04-15T21:18:45.140425+00:00',
+      deletedAt: null,
+      displayDate: '2022-04-15',
+      effectiveDate: '2022-04-15',
+      failedAt: null,
+      inDisputeAt: null,
+      initiatedAt: null,
+      originalEffectiveDate: '2022-04-15',
+      pendingAt: null,
+      scheduledDate: '2022-04-15',
+      succeededAt: null,
+      updatedAt: '2022-04-15T21:18:46.946081+00:00'
+    },
+    transactionType: 'payment'
+  }
 }
 ```
 
@@ -2587,7 +2827,83 @@ in detail in the Peach docs. The response will be something like:
 ```javascript
 {
   success: true,
-  transaction: { ... }
+  transaction: {
+    achConfirmed: false,
+    achProcessedSameDay: false,
+    achReturnCode: null,
+    achSameDay: false,
+    actualAmount: 110,
+    autopayPaymentIds: null,
+    autopayPlanId: null,
+    avsResult: null,
+    cancelLongDescription: null,
+    cancelReason: null,
+    cancelShortDescription: null,
+    chargebackDetails: { amount: 0, chargebacks: [] },
+    companyId: 'CP-GDB3-G1JO',
+    createdBy: { id: 'UR-2KVR-1RDB', name: 'peachapi@lenderco.com' },
+    drawId: null,
+    enablePrepayments: false,
+    externalId: 'a76a2b94-6ed6-46e7-bb1f-a748675754f5',
+    failureDescriptionLong: null,
+    failureDescriptionShort: null,
+    failureReason: null,
+    id: 'TX-QBW5-ML4J',
+    isExternal: true,
+    isVirtual: false,
+    loanId: 'LN-9BN9-X3NB',
+    mainBorrowerId: 'BO-9BR3-GW8J',
+    object: 'transaction',
+    paidFeesAmount: 0.25,
+    paidInterestAmount: 0,
+    paidOverAmount: 0,
+    paidPrincipalAmount: 109.75,
+    parentTransactionId: null,
+    paymentDetails: {
+      fromInstrument: [Object],
+      fromInstrumentId: 'PT-MJ14-YRJP',
+      reason: 'oneTimePayment',
+      toInstrument: [Object],
+      toInstrumentId: 'PT-VPBO-QXJ2',
+      type: 'ach'
+    },
+    processingFeeAmount: null,
+    processingFeeType: null,
+    processorFailureDetails: null,
+    processorFailureReason: null,
+    processorMerchantId: null,
+    processorReconciliationId: null,
+    processorReversalId: null,
+    processorTransactionId: null,
+    retryAttempt: null,
+    retryOriginalTransactionId: null,
+    reversedByTransactionExternalId: null,
+    reversedByTransactionId: null,
+    reversedTransactionId: null,
+    reversedTransactionStatus: null,
+    reversingTransactionStatus: null,
+    scheduledAmount: 110,
+    serviceCreditDetails: { reason: 'oneTimePayment', sponsor: null, type: null },
+    status: 'succeeded',
+    timestamps: {
+      appliedAt: '2022-04-15T21:23:08.112442+00:00',
+      canceledAt: null,
+      chargebackAt: null,
+      createdAt: '2022-04-15T21:23:08.076006+00:00',
+      deletedAt: null,
+      displayDate: '2022-04-15',
+      effectiveDate: '2022-04-15',
+      failedAt: null,
+      inDisputeAt: null,
+      initiatedAt: null,
+      originalEffectiveDate: '2022-04-15',
+      pendingAt: null,
+      scheduledDate: '2022-04-15',
+      succeededAt: '2022-04-15T21:23:11.240944+00:00',
+      updatedAt: '2022-04-15T21:23:11.242488+00:00'
+    },
+    transactionType: 'payment'
+  }
 }
 ```
 
@@ -2682,6 +2998,461 @@ response look something like this:
 {
   success: true,
   transaction: { ... }
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+### Payment Instrument Calls
+
+As stated in the Peach
+[documentation](https://sandboxdocs.peach.finance/#tag/Payment-Instruments):
+
+> This object represents a bank account, credit card, debit card or
+> check belonging to a borrower.
+
+#### [Create Payment Instrument](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.person_payment_instrument_create)
+
+From the Peach docs:
+
+> When creating a payment instrument using the Plaid Account option, two
+> flows are supported:
+>
+> 1) Pass only `accessToken` and `accountIds`. This will create a payment
+> instrument with `status`=`inactive`. You can then use Update payment
+> instrument endpoint to set the `accountHolderType`, and `accountHolderName`
+> fields, and set the `status` to `active`.
+>
+> 2) Pass the required fields as well as `accountHolderType`, and
+> `accountHolderName`. This will create a payment instrument with
+> `status`=`active`. The payment instrument will then be ready to use.
+>
+> _Note: This endpoint returns an array containing a single payment
+> instrument to allow future support for Plaid multi-account select._
+
+ looks
+something like this:
+
+```typescript
+const resp = await client.paymentInstrument.create('BO-9BR3-GW8J', {
+  isExternal: true,
+  externalId: 'ae7e6c94-4b82-4128-aa01-839e99db26b6',
+  status: 'pending',
+  verified: false,
+  nickname: 'Business Bank Account',
+  instrumentType: 'bankAccount',
+  accountNumber: '2323',
+  routingNumber: '021313103',
+  accountType: 'checking',
+  accountHolderType: 'business',
+  accountHolderName: "Chips Cookies"
+}, { readAfterWrite: true })
+```
+where the arguments are the Borrower Id, which can be the Peach Id or the
+external Id, if it's set, and then the data for the creation of the Payment
+Instrument. The response looks something like this:
+
+```javascript
+{
+  success: true,
+  instrument: {
+    accountHolderName: 'ABC Roofing',
+    accountHolderType: 'business',
+    accountLink: null,
+    accountNumber: 'c9csfpr3gbo5vtdkgig0',
+    accountNumberLastFour: '5764',
+    accountType: 'checking',
+    activeAt: null,
+    createdAt: '2022-04-15T19:30:47.915787+00:00',
+    deletedAt: null,
+    externalId: '2d9107be-a835-4903-a7bf-66754418882c',
+    failureDescriptionLong: null,
+    failureDescriptionShort: null,
+    failureReason: null,
+    id: 'PT-OB54-EGJ2',
+    inactiveAt: null,
+    inactiveReason: null,
+    institutionName: 'CITIZENS BANK NA',
+    instrumentType: 'bankAccount',
+    isExternal: true,
+    nickname: 'Business Bank Account',
+    object: 'bankAccount',
+    pendingAt: '2022-04-15T19:30:47.695857+00:00',
+    routingNumber: '021313103',
+    status: 'pending',
+    updatedAt: '2022-04-15T19:30:47.926267+00:00',
+    verified: false
+  }
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Get Payment Instruments](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.person_payment_instrument_get_all)
+
+The call to get Payment Instruments for a Borrower looks something like this:
+
+```typescript
+const resp = await client.paymentInstrument.get('BO-9BR3-GW8J')
+```
+
+where the argument is the Borrower Id, and can be the Peach Id, or the
+external Id, if it's been assigned. The response look something like this:
+
+```javascript
+{
+  success: true,
+  instruments: {
+    count: 2,
+    data: [
+      {
+        accountHolderName: 'Chips Cookies',
+        accountHolderType: 'business',
+        accountLink: null,
+        accountNumber: 'c9crk7r3gbo5vtdkgi10',
+        accountNumberLastFour: '2323',
+        accountType: 'checking',
+        activeAt: '2022-04-15T18:31:59.466310+00:00',
+        createdAt: '2022-04-15T18:31:59.682501+00:00',
+        deletedAt: null,
+        externalId: 'bf4f8aa4-8d7c-479b-93ec-f861f849e28f',
+        failureDescriptionLong: null,
+        failureDescriptionShort: null,
+        failureReason: null,
+        id: 'PT-2K6V-GEB4',
+        inactiveAt: null,
+        inactiveReason: null,
+        institutionName: 'CITIZENS BANK NA',
+        instrumentType: 'bankAccount',
+        isExternal: true,
+        nickname: 'Business Bank Account',
+        object: 'bankAccount',
+        pendingAt: null,
+        routingNumber: '021313103',
+        status: 'active',
+        updatedAt: '2022-04-15T18:31:59.702893+00:00',
+        verified: false
+      },
+      { ... }
+    ]
+  }
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Get Payment Instrument by Id](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.person_payment_instrument_get)
+
+The call to get Payment Instruments for a Borrower looks something like this:
+
+```typescript
+const resp = await client.paymentInstrument.byId('BO-9BR3-GW8J', 'ext-123456')
+```
+
+where the arguments are the Borrower Id, which can be the Peach Id, or the
+external Id, if it's assigned, and the Payment Instrument Id, which can also
+be either the Peach Id, or a properly assigned external Id. The
+response look something like this:
+
+```javascript
+{
+  success: true,
+  instrument: {
+    accountHolderName: 'ABC Roofing',
+    accountHolderType: 'business',
+    accountLink: null,
+    accountNumber: 'c9csmt0jp49pfunuv460',
+    accountNumberLastFour: '4307',
+    accountType: 'checking',
+    activeAt: null,
+    createdAt: '2022-04-15T19:45:56.564487+00:00',
+    deletedAt: null,
+    externalId: '1e26aef8-9e24-463a-9b31-c6ba0301192f',
+    failureDescriptionLong: null,
+    failureDescriptionShort: null,
+    failureReason: null,
+    id: 'PT-WBL3-V3JP',
+    inactiveAt: null,
+    inactiveReason: null,
+    institutionName: 'CITIZENS BANK NA',
+    instrumentType: 'bankAccount',
+    isExternal: true,
+    nickname: 'Business Bank Account',
+    object: 'bankAccount',
+    pendingAt: '2022-04-15T19:45:56.369423+00:00',
+    routingNumber: '021313103',
+    status: 'pending',
+    updatedAt: '2022-04-15T19:45:56.576805+00:00',
+    verified: false
+  }
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Update Payment Instrument](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.person_payment_instrument_update)
+
+The function to update a Payment Instrument, looks something like this:
+
+```typescript
+const resp = await client.paymentInstrument.update(
+  'BO-9BR3-GW8J',
+  'ext-123456',
+  {
+    nickname: 'Materials Account',
+  },
+)
+
+```
+
+where the arguments are the Borrower Id, and Payment Instrument Id, both
+can be either Peach Ids, or properly set external Ids. The
+response look something like this:
+
+```javascript
+{
+  success: true,
+  instrument: {
+    accountHolderName: 'ABC Roofing',
+    accountHolderType: 'business',
+    accountLink: null,
+    accountNumber: 'c9csmt0jp49pfunuv460',
+    accountNumberLastFour: '4307',
+    accountType: 'checking',
+    activeAt: null,
+    createdAt: '2022-04-15T19:45:56.564487+00:00',
+    deletedAt: null,
+    externalId: '1e26aef8-9e24-463a-9b31-c6ba0301192f',
+    failureDescriptionLong: null,
+    failureDescriptionShort: null,
+    failureReason: null,
+    id: 'PT-WBL3-V3JP',
+    inactiveAt: null,
+    inactiveReason: null,
+    institutionName: 'CITIZENS BANK NA',
+    instrumentType: 'bankAccount',
+    isExternal: true,
+    nickname: 'Business Bank Account',
+    object: 'bankAccount',
+    pendingAt: '2022-04-15T19:45:56.369423+00:00',
+    routingNumber: '021313103',
+    status: 'pending',
+    updatedAt: '2022-04-15T19:45:56.576805+00:00',
+    verified: false
+  }
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Delete Payment Instrument](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.person_payment_instrument_delete)
+
+The call to delete the Payment Instrument for a Borrower, looks
+something like this:
+
+```typescript
+const resp = await client.paymentInstrument.delete('BO-9BR3-GW8J', 'ext-123456')
+```
+
+where the arguments are the Borrower Id, and Payment Instrument Id, both
+can be either Peach Ids, or properly set external Ids. The
+response look something like this:
+
+```javascript
+{
+  success: true,
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Verify Amounts of Microdeposits](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.person_payment_instrument_verify)
+
+The call to verify the microdeposits used to correctly identify the account
+associated with a Payment Instrument, looks something like this:
+
+```typescript
+const resp = await client.paymentInstrument.verify(
+  'BO-9BR3-GW8J',
+  'ext-123456',
+  25,
+  32,
+)
+```
+
+where the arguments are the Borrower Id, and Payment Instrument Id, both
+can be either Peach Ids, or properly set external Ids, as well as the
+value of the two microdeposits. The response looks something like this:
+
+```javascript
+{
+  success: true,
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Create Account Link](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.account_link_post)
+
+From the Peach docs:
+
+> Add a data vendor link for this payment instrument. If one is already
+> present, it is replaced.
+
+The call to create the account link for the Payment Instrument, looks
+something like this:
+
+```typescript
+const resp = await client.paymentInstrument.createLink(
+  'BO-9BR3-GW8J',
+  'ext-123456',
+  {
+    vendor: 'plaid',
+    accessToken: '123abc',
+    itemId: '12g34df',
+    accountId: '1122abc',
+  },
+)
+```
+
+where the arguments are the Borrower Id, and Payment Instrument Id, both
+can be either Peach Ids, or properly set external Ids, as well as the
+data surrounding the Plaid Link exchange.
+The response look something like this:
+
+```javascript
+{
+  success: true,
+  data: { ... }
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Update Account Link](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.account_link_put)
+
+From the Peach docs:
+
+> Update record keeping details about the account link. This can not be
+> used to set up a new account link.
+
+The call to update the account link for the Payment Instrument, looks
+something like this:
+
+```typescript
+const resp = await client.paymentInstrument.updateLink(
+  'BO-9BR3-GW8J',
+  'ext-123456',
+)
+```
+
+where the arguments are the Borrower Id, and Payment Instrument Id, both
+can be either Peach Ids, or properly set external Ids. The
+response look something like this:
+
+```javascript
+{
+  success: true,
+  data: { ... }
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Delete Account Link](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.account_link_delete)
+
+From the Peach docs:
+
+> Retrieve the data vendor link details for this payment instrument.
+
+The call to delete, or drop, an account link for a Payment Instrument, looks
+something like this:
+
+```typescript
+const resp = await client.paymentInstrument.deleteLink(
+  'BO-9BR3-GW8J',
+  'ext-123456',
+)
+```
+
+where the arguments are the Borrower Id, and Payment Instrument Id, both
+can be either Peach Ids, or properly set external Ids. The
+response look something like this:
+
+```javascript
+{
+  success: true,
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Refresh Balance Data](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.balances_post)
+
+From the Peach docs:
+
+> Fetch updated balance data from the account link associated with this
+> payment instrument.
+
+The call to refresh the balance data for the account link associated with
+this Payment Instrument, looks something like this:
+
+```typescript
+const resp = await client.paymentInstrument.refreshBalance(
+  'BO-9BR3-GW8J',
+  'ext-123456',
+)
+```
+
+where the arguments are the Borrower Id, and Payment Instrument Id, both
+can be either Peach Ids, or properly set external Ids. The
+response look something like this:
+
+```javascript
+{
+  success: true,
+  balance: { ... }
+}
+```
+
+**Note:** We haven't example data on this return value in this client
+due to insufficient testing.
+
+#### [Get Balance Data](https://sandboxdocs.peach.finance/#operation/peach.payment_instruments.handlers.balances_get)
+
+From the Peach docs:
+
+> Get stored balance data for the account associated with the payment
+> instrument.
+
+The call to get the balance of the linked account, looks
+something like this:
+
+```typescript
+const resp = await client.paymentInstrument.refreshBalance(
+  'BO-9BR3-GW8J',
+  'ext-123456',
+)
+```
+
+where the arguments are the Borrower Id, and Payment Instrument Id, both
+can be either Peach Ids, or properly set external Ids. The
+response look something like this:
+
+```javascript
+{
+  success: true,
+  balance: { ... }
 }
 ```
 
