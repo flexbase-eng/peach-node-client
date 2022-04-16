@@ -190,6 +190,17 @@ export class PaymentInstrumentApi {
     instrument?: PaymentInstrument,
     error?: PeachError
   }> {
+    // check the arguments for validity
+    if (data?.accountHolderName && data?.accountHolderName.match(/[^a-zA-Z0-9\s]/g)) {
+      return {
+        success: false,
+        error: {
+          type: 'peach',
+          error: `The 'accountHolderName' contains an illegal character that will fail parsing checks at Peach. Please stick to a-z, 0-9, and a space. Value: "${data.accountHolderName}"`,
+        },
+      }
+    }
+
     // build up the query params, based on the options
     let query = {} as any
     if (!isEmpty(options.sync)) {
@@ -268,6 +279,17 @@ export class PaymentInstrumentApi {
     instrument?: PaymentInstrument,
     error?: PeachError
   }> {
+    // check the arguments for validity
+    if (data.accountHolderName.match(/[^a-zA-Z0-9\s]/g)) {
+      return {
+        success: false,
+        error: {
+          type: 'peach',
+          error: `The 'accountHolderName' contains an illegal character that will fail parsing checks at Peach. Please stick to a-z, 0-9, and a space. Value: "${data.accountHolderName}"`,
+        },
+      }
+    }
+
     // build up the query params, based on the options
     let query = {} as any
     if (!isEmpty(options.force)) {
