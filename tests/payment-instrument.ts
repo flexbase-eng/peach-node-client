@@ -41,7 +41,7 @@ import { v4 as uuidv4 } from 'uuid'
     routingNumber: '021313103',
     accountType: 'checking',
     accountHolderType: 'business',
-    accountHolderName: "ABC Roofing"
+    accountHolderName: 'ABC Roofing'
   }, { readAfterWrite: true })
   if (treA.success) {
     console.log(`Success! Create Payment Instrument ${treA?.instrument!.id}`)

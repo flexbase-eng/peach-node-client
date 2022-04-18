@@ -56,6 +56,9 @@
     "ts": "ts-node -r dotenv/config",
     "prepublishOnly": "tsc --declaration",
     "lint": "eslint . --ext .ts --fix",
-    "test": "echo 'This project currently uses manually run end-to-end tests; see https://github.com/flexbase-eng/peach-node-client/tree/main#development for setup instructions.'"
+    "test": "echo 'This project currently uses manually run end-to-end tests; see https://github.com/flexbase-eng/peach-node-client/tree/main#development for setup instructions.'",
+    "bump:major": "bin/verchg major",
+    "bump:minor": "bin/verchg minor",
+    "bump:bugfix": "bin/verchg bugfix"
   }
 }
