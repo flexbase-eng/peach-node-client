@@ -3480,7 +3480,7 @@ with Peach:
 * `PEACH_API_KEY` - this is the API Key as provided by Peach to your team.
   It's meant to be secret, so try not to share, but the Peach production
   security also includes Certificates, so it's more than just a key.
-* `PEACH_HOST` - this is the sepcific host where calls should be sent, and
+* `PEACH_HOST` - this is the specific host where calls should be sent, and
   will default to the Peach production host, but can also be set to be the
   `sandbox` instance for testing. This will need to include the `/api` on
   the end - in keeping with the documents sent by Peach to get started.
